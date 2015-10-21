@@ -45,3 +45,13 @@ val tup = parse(line)
 tup.productElement(0)
 tup.productArity
 
+// function to return tuples excluding header, and substituting "?"
+    val noheader = rawblocks.filter(x => !isHeader(x))
+    def toDouble(s: String) = {
+     if ("?".equals(s)) Double.NaN else s.toDouble
+    }
+
+// parse valid lines into MatchData tuples, then cache results
+    val parsed = noheader.map(line => parse(line))
+    parsed.cache()
+
